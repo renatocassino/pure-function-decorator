@@ -8,6 +8,7 @@
     "/dist"
   ],
   "scripts": {
+    "build": "tsc -p tsconfig.production.json",
     "lint": "eslint --ext ts src examples",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest ."

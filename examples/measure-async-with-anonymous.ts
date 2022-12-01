@@ -11,6 +11,7 @@ const measureTimeAsync = async (runner: () => unknown): Promise<unknown> => {
 
   return response
 }
+
 const getGithubUser = decorateFn(async (githubUsername: string) => {
   const user = await axios.get(`https://api.github.com/users/${githubUsername}`)
 
