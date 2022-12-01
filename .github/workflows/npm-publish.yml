@@ -5,8 +5,8 @@ name: Node.js Package
 
 on:
   push:
-    tags:        
-      - '*'
+    branches:
+      main
 
 jobs:
   build:
@@ -31,6 +31,4 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm install
       - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: npm run semantic-release
