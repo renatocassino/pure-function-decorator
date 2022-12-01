@@ -1,26 +1,26 @@
 // If you want run this example, you need to install axios lib
-import { decorateFn } from "../src/decorator";
-// @ts-ignore
-import axios from 'axios';
+import { decorateFn } from '../src/decorator'
+// @ts-expect-error
+import axios from 'axios'
 
-const measureTimeAsync = async (runner: () => unknown) => {
-  console.time('Runner');
-  console.log('Start request');
-  const response = await runner();
-  console.timeEnd('Runner');
+const measureTimeAsync = async (runner: () => unknown): Promise<unknown> => {
+  console.time('Runner')
+  console.log('Start request')
+  const response = await runner()
+  console.timeEnd('Runner')
 
-  return response;
-};
+  return response
+}
 
-const getGithubUser = async (githubUsername: string) => {
-  const user = await axios.get(`https://api.github.com/users/${githubUsername}`);
+const getGithubUser = async (githubUsername: string): Promise<unknown> => {
+  const user = await axios.get<unknown>(`https://api.github.com/users/${githubUsername}`)
 
-  return user.data;
-};
+  return user.data
+}
 
-const getGithubUserDecorated = decorateFn(getGithubUser, measureTimeAsync);
+const getGithubUserDecorated = decorateFn(getGithubUser, measureTimeAsync)
 
-getGithubUserDecorated('renatocassino').then(console.log);
+getGithubUserDecorated('renatocassino').then(console.log)
 
 /*
 Result:
