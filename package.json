@@ -1,0 +1,31 @@
+{
+  "name": "pure-function-decorator",
+  "version": "0.0.0",
+  "description": "An implementation to create decorators in functions",
+  "scripts": {
+    "lint": "eslint --ext ts src",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "scripts-info": {
+    "algoliaDownloader": "Create a file with all list ids from Algolia",
+    "help": "List all infos of scripts",
+    "syncElasticWithAlgolia": "Sync ids from Elasticsearch with Algolia removing when exist only in one"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renatocassino/pure-function-decorator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renatocassino/pure-function-decorator/issues"
+  },
+  "homepage": "https://github.com/renatocassino/pure-function-decorator#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
+  }
+}
