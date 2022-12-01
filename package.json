@@ -1,6 +1,6 @@
 {
   "name": "pure-function-decorator",
-  "version": "0.0.0-development",
+  "version": "1.0.2",
   "description": "An implementation to create decorators in functions",
   "main": "dist/decorator.js",
   "types": "dist/decorator.d.ts",
