@@ -7,11 +7,8 @@ const logger = (runner: () => unknown) => {
   return response;
 };
 
-const sum = (a: number, b: number) => a + b;
-
-const sumDecorated = decorateFn(sum, logger);
-
-console.log(sumDecorated(1, 2));
+const sum = decorateFn((a: number, b: number) => a + b, logger);
+console.log(sum(1, 2));
 
 /*
 Result:

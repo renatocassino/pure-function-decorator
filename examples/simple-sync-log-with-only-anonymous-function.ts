@@ -1,17 +1,13 @@
 import { decorateFn } from "../src/decorator";
 
-const logger = (runner: () => unknown) => {
+const sum = decorateFn((a: number, b: number) => a + b, (runner: () => unknown) => {
   console.log('Start FN');
   const response = runner();
   console.log('End FN');
   return response;
-};
+});
 
-const sum = (a: number, b: number) => a + b;
-
-const sumDecorated = decorateFn(sum, logger);
-
-console.log(sumDecorated(1, 2));
+console.log(sum(1, 2));
 
 /*
 Result:

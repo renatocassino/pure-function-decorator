@@ -1,5 +1,5 @@
 export type FnAny = (...args: any) => any;
-export type RunnerFn = (runner: () => unknown) => unknown;
+export type RunnerFn = (runner: () => unknown) => unknown | Promise<unknown>;
 
 export const decorateFn = (fn: FnAny, cb: RunnerFn): FnAny => {
   return (...args: any) => {

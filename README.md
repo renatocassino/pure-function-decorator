@@ -16,7 +16,7 @@ $ npm i --save pure-function-decorator
 
 You must import the function `decorateFn` and pass two parameters. The first parameter is the decorator and the second is the original function. The original function should pass as parameter to decorator. All decorators should receive just a callback called `runner`.
 
-Ps: The function runner knows the args, and you dont need to pass parameters again.
+Ps: The function runner knows the args, and you dont need to pass parameters again. This is a [curry](https://javascript.info/currying-partials) function and all parameters already exist inside the function.
 
 ### Sync way
 
@@ -64,32 +64,37 @@ End to run
 Example: Log a time of request to api
 
 ```typescript
-import { decorateFn } from 'pure-function-decorator';
-import type { RunnerFn } from 'pure-function-decorator';
+import { decorateFn } from '../src/decorator';
 import axios from 'axios';
 
-const measureTimeAsync = async (runner: RunnerFn) => {
+const measureTimeAsync = async (runner: () => unknown) => {
   console.time('Runner');
   console.log('Start request');
   const response = await runner();
-  console.endTime('Runner');
+  console.timeEnd('Runner');
 
   return response;
 };
 
-const getGithubUser = decorateFn(measureTimeAsync, async (githubUsername: string) => {
+const getGithubUser = async (githubUsername: string) => {
   const user = await axios.get(`https://api.github.com/users/${githubUsername}`);
 
   return user.data;
-});
+};
 
-getGithubUser('renatocassino').then(console.log);
+const getGithubUserDecorated = decorateFn(getGithubUser, measureTimeAsync);
+
+getGithubUserDecorated('renatocassino').then(console.log);
 
 /*
+Result:
+
 Start request
-{ login: 'renatocassino', .......}
-122ms
- */
+Runner: 259.274ms
+{
+  login: 'renatocassino',
+  ........
+*/
 ```
 
 ### Compose decorators
@@ -114,4 +119,4 @@ const functionWithMultipleDecorators = composeDecorators(
 ); // Better way :)
 ```
 
-There are multiple examples in folder [examples](https://....);
+There are multiple examples in folder [examples](https://github.com/renatocassino/pure-function-decorator/tree/main/examples);
