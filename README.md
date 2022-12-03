@@ -18,6 +18,8 @@ You must import the function `decorateFn` and pass two parameters. The first par
 
 Ps: The function runner knows the args, and you dont need to pass parameters again. This is a [curry](https://javascript.info/currying-partials) function and all parameters already exist inside the function.
 
+I know that the dream is use `@myDecorator`, but I have no idea how to add this in native Typescript.
+
 ### Sync way
 
 Example: Log a synchronous function execution

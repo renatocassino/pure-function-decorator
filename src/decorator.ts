@@ -1,10 +1,14 @@
 export type FnAny = (...args: any) => any
-export type RunnerFn = (runner: () => unknown) => unknown | Promise<unknown>
+export interface Config<T = unknown> {
+  args: T
+}
 
-export const decorateFn = (fn: FnAny, cb: RunnerFn): FnAny => {
+export type RunnerFn<TReturn = unknown, TArgs = unknown> = (runner: () => TReturn, config: Config<TArgs>) => TReturn | Promise<TReturn>
+
+export const decorateFn = <TReturn = unknown, TArgs = unknown>(fn: FnAny, decoratorFunction: RunnerFn<TReturn, TArgs>): FnAny => {
   return (...args: any) => {
-    const runner = (): any => fn(...args)
-    return cb(runner)
+    const runner = (): TReturn => fn(...args)
+    return decoratorFunction(runner, { args })
   }
 }
 

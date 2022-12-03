@@ -13,6 +13,7 @@
     "lint": "eslint --ext ts src examples",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest .",
+    "validate": "npm run lint && npm run test",
     "semantic-release": "semantic-release --branches main"
   },
   "scripts-info": {
