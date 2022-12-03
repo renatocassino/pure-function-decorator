@@ -1,15 +1,19 @@
 // If you want run this example, you need to install axios lib
-import { decorateFn } from '../src/decorator'
+import { fnDecorator } from '../src/decorator'
 // @ts-expect-error
 import axios from 'axios'
 
-const measureTimeAsync = async (runner: () => unknown): Promise<unknown> => {
-  console.time('Runner')
-  console.log('Start request')
-  const response = await runner()
-  console.timeEnd('Runner')
+const measureTimeAsync = (_target: any, propertyKey: string, descriptor: PropertyDescriptor): void => {
+  const oldValue = descriptor.value
 
-  return response
+  descriptor.value = async function () {
+    console.time('Runner')
+    console.log('Start request')
+    const response = await oldValue.apply(this, arguments)
+    console.timeEnd('Runner')
+
+    return response
+  }
 }
 
 const getGithubUser = async (githubUsername: string): Promise<unknown> => {
@@ -18,7 +22,7 @@ const getGithubUser = async (githubUsername: string): Promise<unknown> => {
   return user.data
 }
 
-const getGithubUserDecorated = decorateFn(getGithubUser, measureTimeAsync)
+const getGithubUserDecorated = fnDecorator(measureTimeAsync, getGithubUser)
 
 getGithubUserDecorated('renatocassino').then(console.log)
 

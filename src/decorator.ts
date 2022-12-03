@@ -1,13 +1,9 @@
-export type FnAny = (...args: any) => any
-export type RunnerFn = (runner: () => unknown) => unknown | Promise<unknown>
+import { decorateFunction } from './decorateFunction'
 
-export const decorateFn = (fn: FnAny, cb: RunnerFn): FnAny => {
-  return (...args: any) => {
-    const runner = (): any => fn(...args)
-    return cb(runner)
-  }
+export const fnDecorator = (decorators: any[] | any, fn: Function): Function => {
+  const fakeObjectKlass = { fn }
+  const decoratorList = Array.isArray(decorators) ? decorators : [decorators]
+  const decorated = decorateFunction(decoratorList, fn, fn.name, Object.getOwnPropertyDescriptor(fakeObjectKlass, 'fn'))
+
+  return decorated.value
 }
-
-export const composeDecorators = (fn: FnAny, decorators: RunnerFn[]): FnAny => (
-  decorators.reduce((acc, decorator) => decorateFn(acc, decorator), fn)
-)

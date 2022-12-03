@@ -1,14 +1,23 @@
-import { decorateFn } from '../src/decorator'
+import { fnDecorator } from '../src/decorator'
 
-const logger = (runner: () => unknown): unknown => {
-  console.log('Start FN')
-  const response = runner()
-  console.log('End FN')
-  return response
+const logger = () => {
+  return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+    const oldValue = descriptor.value
+
+    descriptor.value = function () {
+      console.log('start')
+      const response = oldValue.apply(this, arguments)
+      console.log('end')
+      return response
+    }
+  }
 }
 
-const sum = decorateFn((a: number, b: number) => a + b, logger)
-console.log(sum(1, 2))
+const decoratedFn = fnDecorator(logger(), (): null => {
+  console.log('somethingHappen')
+  return null
+})
+decoratedFn()
 
 /*
 Result:
