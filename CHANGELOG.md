@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/renatocassino/pure-function-decorator/compare/v1.0.2...v2.0.0) (2022-12-03)
+
+
+### Features
+
+* **decorator pattern:** change the interface to sync with typescript contract ([e6cd09e](https://github.com/renatocassino/pure-function-decorator/commit/e6cd09ee440d59179d38150363062c8da705bc7f))
+
+
+### BREAKING CHANGES
+
+* **decorator pattern:** All contract type was changed. The old version wont work anymore
+
 ## [1.0.2](https://github.com/renatocassino/pure-function-decorator/compare/v1.0.1...v1.0.2) (2022-12-01)
 
 
