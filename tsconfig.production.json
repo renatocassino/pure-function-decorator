@@ -4,7 +4,7 @@
     "moduleResolution": "node",
     "declaration": true,
     "removeComments": true,
-    "experimentalDecorators": false,
+    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "es2015",
     "sourceMap": true,
