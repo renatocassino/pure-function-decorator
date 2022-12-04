@@ -25,7 +25,7 @@ In the descriptor, exists the attribute called `value`. The value (in method dec
 Example: Log a synchronous function execution
 
 ```typescript
-import { decorateFn } from 'pure-function-decorator';
+import { fnDecorator } from 'pure-function-decorator';
 
 const logger = (_target: any, _propertyKey: any, descriptor: PropertyDescriptor): void => {
   // descriptor.value is the original function
