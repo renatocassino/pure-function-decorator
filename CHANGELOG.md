@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/renatocassino/pure-function-decorator/compare/v2.0.0...v2.0.1) (2022-12-04)
+
+
+### Bug Fixes
+
+* update readme example ([7a4d6ee](https://github.com/renatocassino/pure-function-decorator/commit/7a4d6ee62e983bdce057ad34c0e72cd52853de7a))
+
 # [2.0.0](https://github.com/renatocassino/pure-function-decorator/compare/v1.0.2...v2.0.0) (2022-12-03)
 
 
