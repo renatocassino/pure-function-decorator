@@ -16,7 +16,7 @@ $ npm i --save pure-function-decorator
 
 In [method decorator](https://www.typescriptlang.org/docs/handbook/decorators.html#method-decorators) in Typescript receives 3 parameters. The `target`, the `propertyKey` and the `descriptor`. The target is the class, the propertyKey is the name of method and the descriptor is an instance of [Property Descriptors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor). To keep the compatibility in pure functions, the target should be null and the property descriptor should be generate in instanciation. The propertyKey is the name of function.
 
-You must import the function `fnDecorator` and pass two parameters. The first is the list of decorators (if is just one decorator you don't need to pass an array) and the second parameter is the function.
+You must write a decorator and to use in a pure function, import the function `fnDecorator`. Examples bellow:
 
 In the descriptor, exists the attribute called `value`. The value (in method decorator)
 
